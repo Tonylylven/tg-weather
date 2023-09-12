@@ -1,68 +1,5 @@
-// const TelegramBot = require('node-telegram-bot-api');
-// const bot = new TelegramBot('5963484994:AAHMXY8d_pR64pVNT-FeGbCw2DZe36xNvcM', { polling: true });
-// const axios = require('axios');
-
-// const weatherByChatId = {}; // объект для хранения погоды по идентификатору чата
-
-// bot.onText(/\/start/, (msg) => {
-//   const chatId = msg.chat.id;
-
-//   const text = 'Привет, я бот Tonylylven! Подпишись на мой канал twitch.tv/tonylylven.';
-//   const keyboard = [
-//     [{ text: 'Погода', callback_data: 'weather' }],
-//     [{ text: 'Сохранить город', callback_data: 'saveCity' }]
-//   ];
-
-//   bot.sendMessage(chatId, text, {
-//     reply_markup: {
-//       inline_keyboard: keyboard
-//     }
-//   });
-// });
-
-// bot.on('callback_query', (callbackQuery) => {
-//   const chatId = callbackQuery.message.chat.id;
-//   const data = callbackQuery.data;
-
-//   if (data === 'saveCity') {
-//     weatherByChatId[chatId] = { isWaitingForWeather: true }; // сохраняем состояние ожидания ввода города
-//     bot.sendMessage(chatId, 'Введите город для сохранения:');
-//   }
-
-//   if (data === 'weather' && weatherByChatId[chatId]?.city) { // проверяем, сохранен ли город для данного чата
-//     getWeather(chatId, weatherByChatId[chatId].city);
-//   }
-// });
-
-// bot.on('message', async (msg) => {
-//   const chatId = msg.chat.id;
-//   const text = msg.text;
-
-//   if (weatherByChatId[chatId]?.isWaitingForWeather) { // проверяем, ожидается ли ввод города для данного чата
-//     weatherByChatId[chatId].isWaitingForWeather = false;
-//     weatherByChatId[chatId].city = text; // сохраняем введенный город для данного чата
-//     bot.sendMessage(chatId, 'Город сохранен');
-//   }
-// });
-
-// async function getWeather(chatId, city) {
-//   const apiKey = '42422285deaa575fb996d6370b694119';
-//   try {
-//     const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
-//     const temperature = response.data.main.temp;
-//     const description = response.data.weather[0].description;
-
-//     bot.sendMessage(chatId, `Погода в городе ${city}: \nТемпература: ${temperature}°C \nОписание: ${description}`);
-//   } catch (error) {
-//     bot.sendMessage(chatId, 'Не удалось получить данные о погоде. Проверьте правильность ввода города.');
-//   }
-// }
-
-// bot.startPolling();
-
-
 const TelegramBot = require('node-telegram-bot-api');
-const bot = new TelegramBot('5963484994:AAHMXY8d_pR64pVNT-FeGbCw2DZe36xNvcM', { polling: true });
+const bot = new TelegramBot('YOUR_TOKEN', { polling: true });
 const axios = require('axios');
 const schedule = require('node-schedule');
 
@@ -133,7 +70,7 @@ bot.on('message', async (msg) => {
 });
 
 async function getWeather(chatId, city) {
-  const apiKey = '42422285deaa575fb996d6370b694119';
+  const apiKey = 'API_TOKEN';
   try {
     const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
     const temperature = response.data.main.temp;

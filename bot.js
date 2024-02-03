@@ -1,5 +1,9 @@
 const TelegramBot = require('node-telegram-bot-api');
+<<<<<<< HEAD
 const bot = new TelegramBot('6354901402:AAGyllShFHezLzlNfsmVVf-ccz8pQzwTlgA');
+=======
+const bot = new TelegramBot('YOUR_TOKEN', { polling: true });
+>>>>>>> 29ca8bef3ecab0b7b32cdfbb797d3a9bab173d7f
 const axios = require('axios');
 const schedule = require('node-schedule');
 
@@ -70,7 +74,11 @@ bot.on('message', async (msg) => {
 });
 
 async function getWeather(chatId, city) {
+<<<<<<< HEAD
   const apiKey = '42422285deaa575fb996d6370b694119';
+=======
+  const apiKey = 'API_TOKEN';
+>>>>>>> 29ca8bef3ecab0b7b32cdfbb797d3a9bab173d7f
   try {
     const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
     const temperature = response.data.main.temp;
